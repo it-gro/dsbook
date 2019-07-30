@@ -1,8 +1,9 @@
-## The t-distribution
+## The t-distribution {#t-dist}
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(dslabs)
+data("polls_us_election_2016")
 ds_theme_set()
 polls <- polls_us_election_2016 %>% 
   filter(state == "U.S." & enddate >= "2016-10-31" &
@@ -14,9 +15,9 @@ one_poll_per_pollster <- polls %>% group_by(pollster) %>%
   ungroup()
 ```
 
-Above we made use of the CLT with a sample size of 15. Because we are estimating a second parameters $\sigma$, further variability is introduced into our confidence interval which result in intervals that are too small. For very large sample sizes this extra variability is negligible, but, in general, for values smaller than 30 we need to be cautions about using CLT. 
+Above we made use of the CLT with a sample size of 15. Because we are estimating a second parameters $\sigma$, further variability is introduced into our confidence interval which result in intervals that are too small. For very large sample sizes this extra variability is negligible, but, in general, for values smaller than 30 we need to be cautions about using the CLT. 
 
-However, if the data in the urn is known to follow a normal distribution, then we actually have mathematical theory that tell us how much bigger we need to make the intervals to account for the estimation of $\sigma$. Using this theory, we can construct confidence intervals for any $N$. But again only if **the data in the urn is known to follow a normal distribution**. So for the 0,1 data of our previous urn model, this theory definitely does not apply.
+However, if the data in the urn is known to follow a normal distribution, then we actually have mathematical theory that tell us how much bigger we need to make the intervals to account for the estimation of $\sigma$. Using this theory, we can construct confidence intervals for any $N$. But again, this works only if **the data in the urn is known to follow a normal distribution**. So for the 0, 1 data of our previous urn model, this theory definitely does not apply.
 
 The statistic on which confidence intervals for $d$ are based is
 
@@ -27,19 +28,19 @@ $$
 CLT tells us that Z is approximately normally distributed with expected value 0 and standard error 1. But in practice we don't know $\sigma$ so we use:
 
 $$
-Z = \frac{\bar{X} - d}{s\sqrt{N}}
+Z = \frac{\bar{X} - d}{s/\sqrt{N}}
 $$
 
 
 By substituting $\sigma$ with $s$ we introduce some variability. The theory tells us that $Z$ follows a t-distribution with $N-1$ _degrees of freedom_. The degrees of freedom is a parameter that controls the variability via fatter tails:
 
-```{r, echo=FALSE}
+```{r t-distribution-examples, echo=FALSE}
 x <- seq(-5,5, len=100)
 data.frame(x=x, Normal = dnorm(x, 0, 1), t_03 = dt(x,3), t_05 = dt(x,5), t_15=dt(x,15)) %>% gather(distribution, f, -x) %>% ggplot(aes(x,f, color = distribution)) + geom_line() +ylab("f(x)")
 ```
 
 If we are willing to assume the pollster effect data is normally distributed, based on the sample data $X_1, \dots, X_N$,  
-```{r}
+```{r poll-spread-qq}
 one_poll_per_pollster %>%
   ggplot(aes(sample=spread)) + stat_qq()
 ```
@@ -65,10 +66,21 @@ is bigger than
 qnorm(0.975)
 ```
 
-Fivethirtyeight uses the t-distribution to generate errors that better model the deviations we see in election data. For example the deviation we saw in Wisconsin between the polls and actual result, where Trump won by 0.7%, is more in line with t-distributed data than the normal distribution.
+The t-distribution can also be used to model errors in bigger deviations are more likely than with the normal distribution, as seen in the densities we previously saw. Fivethirtyeight uses the t-distribution to generate errors that better model the deviations we see in election data. For example, in Wisconsin the average of six polls was 7% in favor of Clinton with a standard deviation of 1%, but Trump won by 0.7%. Even after taking into account the overall bias, this 7.7% residual is more in line with t-distributed data than the normal distribution.
 
 ```{r}
-results %>% filter(state == "Wisconsin")
+data("polls_us_election_2016")
+polls_us_election_2016 %>%
+  filter(state =="Wisconsin" &
+           enddate >="2016-10-31" & 
+           (grade %in% c("A+","A","A-","B+") | is.na(grade))) %>%
+  mutate(spread = rawpoll_clinton/100 - rawpoll_trump/100) %>%
+  mutate(state = as.character(state)) %>%
+  left_join(results_us_election_2016, by = "state") %>%
+  mutate(actual = clinton/100 - trump/100) %>%
+  summarize(actual = first(actual), avg = mean(spread), 
+            sd = sd(spread), n = n()) %>%
+  select(actual, avg, sd, n)
 ```
 
 

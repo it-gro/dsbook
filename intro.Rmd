@@ -1,40 +1,45 @@
-# Introduction 
+# Introduction {-}
 
-The demand for skilled data science practitioners in industry, academia, and government is rapidly growing. This book introduces concepts and skills that can help you tackle real-world data analysis challenges. It covers concepts from probability, statistical inference, linear regression and machine learning and helps you develop skills such as R programming, data wrangling with dplyr, data visualization with ggplot2, file organization with UNIX/Linux shell, version control with GitHub, and reproducible document preparation with R markdown. 
+The demand for skilled data science practitioners in industry, academia and government is rapidly growing. This book introduces concepts and skills that can help you tackle real-world data analysis challenges. It covers concepts from probability, statistical inference, linear regression and machine learning. It also helps you develop skills such as R programming, data wrangling with __dplyr__, data visualization with __ggplot2__, algorithm building with __caret__, file organization with UNIX/Linux shell, version control with Git and GitHub, and reproducible document preparation with __knitr__ and R markdown. The book is divided into six parts: __R__, __Data Visualization__, __Data Wrangling__, __Probability, Inference and Regression with R__,  __Machine Learning__, and __Productivity Tools__. Each part has several chapters  meant to be presented as one lecture. The book includes dozens of exercises distributed across most chapters.
 
-## Case Studies 
-Throughout the series, we use motivating case studies. For each of the concepts covered, we start by asking a specific question and answer these through data analysis. We learn the concepts as a means to answer the questions. Examples of the case studies included in the book are:
+## Case studies {-}
+
+Throughout the book, we use motivating case studies. In each case study, we try to realistically mimic a data scientist’s experience. For each of the concepts covered, we start by asking specific questions and answer these through data analysis. We learn the concepts as a means to answer the questions. Examples of the case studies included in the book are:
 
 | Case Study | Concept | 
 | ---- | ---| --- |
-| US Murder Rates by State |  R basics |
-| Trends in World Health and Economics | Data Visualization | 
-| The Financial Crisis of 2007-2008 | Probability |
-| Election Forecasting | Statistical Inference |  
-| Money Ball: Building a Baseball Team | Linear Regression |
-| Movie Recommendation Systems | Machine Learning | 
+| US murder rates by state |  R basics |
+| Student heights | Statistical summaries |
+| Trends in world health and economics | Data Visualization | 
+| The impact of vaccines on infectious disease rates | Data Visualization | 
+| The financial crisis of 2007-2008 | Probability |
+| Election forecasting | Statistical Inference |  
+| Reported student heights | Data Wrangling | 
+| Money Ball: Building a baseball team | Linear Regression |
+| MNIST: Image processing hand written digits | Machine Learning |
+| Movie recommendation systems | Machine Learning | 
 
-Throughout the book, we will be using the R software environment for all our analysis. You will learn R, statistical concepts, and data analysis techniques simultaneously. By working through the examples we gain experience in R and packages such as dplyr, ggplot2 and other tidyverse tools. In each case study we try to realistically mimic a data scientist’s experience. In a chapter on **Data Wrangling** we will demonstrate how we prepared the data for these analysis from its raw form.
+## Who will find this book useful? {-}
 
-## Who Will Find This Book Useful? 
+This book is meant to be a textbook for a first course in Data Science. No previous knowledge of R is necessary, although some experience with programming may be helpful. The statistical concepts used to answer the case study questions are only briefly introduced, so a Probability and Statistics textbook is highly recommended for in-depth understanding of these concepts. If you read and understand all the chapters and complete all the exercises, you will be well-positioned to perform basic data analysis tasks and you will be prepared to learn the more advanced concepts and skills needed to become an expert. 
 
-This book is meant to be a textbook for a first course in Data Science. No previous knowledge of R or statistics is necessary, although we do assume a high level of quantitative ability and some experience with programming. 
-If you possess these skills, read all the chapters and complete all the exercises, you will be well positioned to perform basic data analysis tasks and to take more advanced courses and become an expert.
+## What does this book cover? {-}
 
-## What Does This Book Cover? 
+We start by going over the **Basics of R** and the __tidyverse__. You learn R throughout the book, but in the first part we go over the building blocks needed to keep learning during the rest of the book. 
 
-We start by going over the basics of R. You learn R throughout the book, but in the first chapter we go over the building blocks needed to keep learning during the rest of the book. 
+**Data Visualization** is the topic of the following part. The growing availability of informative datasets and software tools has led to increased reliance on data visualizations in many fields. We demonstrate how to use __ggplot2__ to generate graphs and describe important data visualization principles.
 
-Data visualization is the topic of the following chapter. The growing availability of informative datasets and software tools has led to increased reliance on data visualizations in many fields. We demonstrate how to use ggplot2 to generate graphs and describe important data visualization principles.
+The third part uses several examples to familiarize the reader with **Data Wrangling**. Among the specific skills we learn are web scrapping, using regular expressions, and joining and reshaping data tables. We do this using __tidyverse__ tools.
 
-In the third chapter we introduce probability which is useful in many contexts, in particular those that depend on data affected by chance in some way. As a result, knowledge of probability is indispensable for data science. Probability is also necessary to understand the topic of the next chapter, statistical inference. Here we describe the statistical theory used by election forecasting. 
+In the fourth part we demonstrate the importance of statistics in data analysis by answering case study questions using **Probability, Inference, and Regression**. 
 
-In the fifth chapter we provide a brief introduction to the tools we use on a day-to-day basis in data science projects. These are the UNIX/Linux shell, git and GitHub and RStudio. 
+In the fifth part we present several challenges that lead us to introduce **Machine Learning**. We learn to use the __caret__ package to build prediction algorithms including K-nearest Neighbors and Random Forests.
 
-Chapter six goes over several examples to familiarize the reader with data wrangling. Among the specific skills we learn are data import, web scrapping, using regular expressions, and reshaping data. We do this using tidyverse tools.
+In the final chapter, we provide a brief introduction to the **Productivity Tools** we use on a day-to-day basis in data science projects. These are RStudio, UNIX/Linux shell, Git and GitHub, and __knitr__ and R Markdown.
 
-After describing the skills and concepts we are ready to embark on more complex data analysis tasks. In chapter seven we delineate challenges that lead us to describe linear regression and, in chapter 8, challenges that lead us to introduce machine learning.
+## What is not covered by this book? {-}
 
-## What is Not Covered by This Book? 
+This book focuses on the data analysis aspects of data science. We therefore do not cover aspects related to data management or engineering. Although R programming is an essential part of the book, we do not teach more advanced computer science topics such as data structures, optimization, and algorithm theory. Similarly, we do not cover topics such as web services, interactive graphics, parallel computing, and data streaming processing. The statistical concepts are presented mainly as tools to solve problems and in-depth theoretical descriptions are not included in this book.
 
-This book focuses on the data analysis aspects of data science. We therefore do not cover aspects related to data management or engineering. Although R programming is an essential part of the book, we do not teach more advanced topics such as data structures, optimization, and algorithm theory. Similarly, we do not cover topics such as web services, interactive graphics, parallel computing, and data streaming processing.
+
+
